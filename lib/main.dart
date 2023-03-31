@@ -26,21 +26,37 @@ class HomePage extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            snap: true,
+            floating: true,
             title: Text("Sliver AppBar"),
-            pinned: true, // 앱바 고정 유무
-            expandedHeight: 250, // 앱바 확장 크기
+            pinned: false,
+            // 앱바 고정 유무
+            expandedHeight: 250,
+            // 앱바 확장 크기
+            flexibleSpace: Container(
+              child: Center(
+                child: Text("FlexivleSpace", style: TextStyle(fontSize: 50)),
+              ),
+            ),
           ),
           SliverAppBar(
             title: Text("Sliver AppBar"),
-            pinned: false, // 앱바 고정 유무
-            expandedHeight: 250, // 앱바 확장 크기
+            pinned: true, // 앱바 고정 유무
+            expandedHeight: 50, // 앱바 확장 크기
+          ),
+          SliverToBoxAdapter(
+            child: Container(
+              height: 200,
+              color: Colors.red,
+            )
           ),
           SliverFixedExtentList(
             itemExtent: 100,
             delegate: SliverChildBuilderDelegate(
+              childCount: 100,
               (context, index) {
                 if (index % 4 == 0 && index != 0) {
-                  return Ad((index/4).toInt());
+                  return Ad((index / 4).toInt());
                 } else {
                   return Diary(index);
                 }
