@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: HomePage(),
     );
   }
@@ -46,9 +47,21 @@ class HomePage extends StatelessWidget {
           ),
           SliverToBoxAdapter(
             child: Container(
-              height: 200,
-              color: Colors.red,
-            )
+              height: 100,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: 20,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    width: 100,
+                    color: Colors.blueAccent,
+                    child: Center(
+                      child: Text('Item $index'),
+                    ),
+                  );
+                },
+              ),
+            ),
           ),
           SliverFixedExtentList(
             itemExtent: 100,
