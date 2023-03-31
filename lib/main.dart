@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:sliverapp/ad.dart';
+import 'package:sliverapp/diary.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,11 +39,11 @@ class HomePage extends StatelessWidget {
             itemExtent: 100,
             delegate: SliverChildBuilderDelegate(
               (context, index) {
-                return Container(
-                  alignment: Alignment.center,
-                  color: Colors.lightBlue[100 * (index % 9)],
-                  child: Text("List Item $index"),
-                );
+                if (index % 4 == 0 && index != 0) {
+                  return Ad((index/4).toInt());
+                } else {
+                  return Diary(index);
+                }
               },
             ),
           ),
